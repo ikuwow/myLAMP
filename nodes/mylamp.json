@@ -1,6 +1,7 @@
 {
     "name": "mylamp",
     "run_list": [
-        "recipe[base::default]"
+        "recipe[base::default]",
+        "recipe[apache::default]"
     ]
 }
