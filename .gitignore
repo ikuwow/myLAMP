@@ -2,3 +2,4 @@
 html/
 !.gitkeep
 .chef/local-mode-cache/
+/cookbooks/
