@@ -7,6 +7,7 @@
 # All rights reserved - Do Not Redistribute
 #
 
+# TODO: nkf
 %w{vim rsync}.each do |pkg|
     package pkg do
         action :install

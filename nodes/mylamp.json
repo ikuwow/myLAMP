@@ -2,6 +2,7 @@
     "name": "mylamp",
     "run_list": [
         "recipe[base::default]",
-        "recipe[apache::default]"
+        "recipe[apache::default]",
+        "recipe[php::default]"
     ]
 }
