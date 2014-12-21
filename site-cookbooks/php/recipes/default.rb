@@ -11,5 +11,11 @@
     package pkg do
         options "--enablerepo=remi,remi-php56"
         action :install
+        notifies :run, "bash[Restart_Apache]"
     end
+end
+
+bash "Restart_Apache" do
+    code "apachectl graceful"
+    action :nothing
 end
