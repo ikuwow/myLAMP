@@ -43,6 +43,6 @@ template "PostgreSQL config" do
     source "pg_hba.conf.erb"
     path "/var/lib/pgsql/9.3/data/pg_hba.conf"
     action :create
-    notifies :run, "service[PostgreSQL_9.3]"
+    notifies :restart, "service[PostgreSQL_9.3]"
 end
 
