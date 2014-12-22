@@ -17,3 +17,15 @@ service "httpd" do
     action [:start, :enable]
 end
 
+
+template "httpd-config" do
+    source "httpd.conf.erb"
+    path "/etc/httpd/conf/httpd.conf"
+    action :create
+    notifies :run, "bash[apply_apache_changes]"
+end
+
+bash "apply_apache_changes" do
+    code "apachectl graceful"
+    action :nothing
+end

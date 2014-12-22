@@ -11,9 +11,16 @@
     package pkg do
         options "--enablerepo=remi,remi-php56"
         action :install
-        notifies :run, "bash[Restart_Apache]"
     end
 end
+
+package "php-mcrypt" do
+    options "--enablerepo=remi,remi-php56,epel"
+    action :install
+    notifies :run, "bash[Restart_Apache]"
+end
+
+
 
 # composer
 bash "Install Composer" do
