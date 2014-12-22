@@ -63,8 +63,8 @@ Include conf.modules.d/*.conf
 # It is usually good practice to create a dedicated user and group for
 # running httpd, as with most system services.
 #
-User apache
-Group apache
+User vagrant
+Group vagrant
 
 # 'Main' server configuration
 #
@@ -351,3 +351,18 @@ EnableSendfile on
 #
 # Load config files in the "/etc/httpd/conf.d" directory, if any.
 IncludeOptional conf.d/*.conf
+
+
+<VirtualHost *:80>
+    DocumentRoot "/var/www/html/testproject/public"
+    ServerName tp.mylamp.local
+    ErrorLog "logs/testproject-error_log"
+    CustomLog "logs/testproject-access_log" common
+    
+    <Directory "/var/www/html/testproject/public">
+        Require all granted
+        AllowOverride All
+        Options Indexes FollowSymLinks
+    </Directory>
+
+</VirtualHost>
