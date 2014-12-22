@@ -4,6 +4,7 @@
         "recipe[base::default]",
         "recipe[apache::default]",
         "recipe[php::default]",
-        "recipe[postgresql::default]"
+        "recipe[postgresql::default]",
+        "recipe[ruby::default]"
     ]
 }
