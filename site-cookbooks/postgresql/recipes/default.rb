@@ -23,6 +23,11 @@ end
     end
 end
 
+package "php-pgsql" do
+    options "--enablerepo=remi,remi-php56"
+    action :install
+end
+
 # /var/lib/pgsql/9.3/dataがemptyだったらinitialize
 bash "Initialize postgresql" do
     code "/usr/pgsql-9.3/bin/postgresql93-setup initdb"
