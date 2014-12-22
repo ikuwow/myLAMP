@@ -15,7 +15,15 @@
     end
 end
 
+# composer
+bash "Install Composer" do
+    code "curl -sS https://getcomposer.org/installer | \
+        php -- --install-dir=/usr/bin --filename=composer"
+    not_if "which composer"
+end
+
 bash "Restart_Apache" do
     code "apachectl graceful"
     action :nothing
 end
+
