@@ -32,3 +32,10 @@ end
 service "postgresql-9.3" do
     action [:enable, :start]
 end
+
+template "PostgreSQL config" do
+    source "pg_hba.conf.erb"
+    path "/var/lib/pgsql/9.3/data/pg_hba.conf"
+    action :create
+end
+
