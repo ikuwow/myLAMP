@@ -13,6 +13,7 @@ bash "add_postgres_rpm" do
     sed -i -e "s/enabled *= *1/enabled=0/g" /etc/yum.repos.d/pgdg-93-centos.repo
     EOC
     creates "/etc/yum.repos.d/pgdg-93-centos.repo"
+    not_if { File.exists?("/etc/yum.repos.d/pgdg-93-centos.repo") }
 end
 
 %w{postgresql93 postgresql93-server postgresql93-libs postgresql93-contrib postgresql93-devel}.each do |pkg|
@@ -21,8 +22,13 @@ end
         action :install
     end
 end
-=begin
-service "postgresql" do
+
+# /var/lib/pgsql/9.3/dataがemptyだったらinitialize
+bash "Initialize postgresql" do
+    code "/usr/pgsql-9.3/bin/postgresql93-setup initdb"
+    not_if "test `ls /var/lib/pgsql/9.3/data | wc -l` -gt 0"
+end
+
+service "postgresql-9.3" do
     action [:enable, :start]
 end
-=end
