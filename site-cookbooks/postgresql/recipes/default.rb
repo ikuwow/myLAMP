@@ -15,7 +15,14 @@ bash "add_postgres_rpm" do
     creates "/etc/yum.repos.d/pgdg-93-centos.repo"
 end
 
-package "postgresql93" do
-    options "--enablerepo=pgdg93"
-    action :install
+%w{postgresql93 postgresql93-server}.each do |pkg|
+    package pkg do
+        options "--enablerepo=pgdg93"
+        action :install
+    end
 end
+=begin
+service "postgresql" do
+    action [:enable, :start]
+end
+=end
