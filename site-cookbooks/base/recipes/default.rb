@@ -8,7 +8,7 @@
 #
 
 # TODO: nkf
-%w{vim rsync}.each do |pkg|
+%w{vim rsync git}.each do |pkg|
     package pkg do
         action :install
     end
