@@ -10,7 +10,7 @@ myLAMP
 - [x] Apache 2.4.6
 - [x] PHP 5.6.4
 - [x] PostgreSQL 9.3.5
-- [ ] Composer
+- [x] Composer 1.0.0-dev
 - [ ] MySQL 5.6
 - [ ] git2系
 - [ ] Ruby 2.1.5
