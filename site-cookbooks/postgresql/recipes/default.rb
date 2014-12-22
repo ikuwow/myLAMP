@@ -29,7 +29,8 @@ bash "Initialize postgresql" do
     not_if "test `ls /var/lib/pgsql/9.3/data | wc -l` -gt 0"
 end
 
-service "postgresql-9.3" do
+service "PostgreSQL_9.3" do
+    service_name "postgresql-9.3"
     action [:enable, :start]
 end
 
@@ -37,5 +38,6 @@ template "PostgreSQL config" do
     source "pg_hba.conf.erb"
     path "/var/lib/pgsql/9.3/data/pg_hba.conf"
     action :create
+    notifies :run, "service[PostgreSQL_9.3]"
 end
 
