@@ -38,6 +38,14 @@ user "Setting Root Password" do
     action :modify
 end
 
+# パス追加（/usr/local/bin）
+template "Modify Path (root)" do
+    user "root"
+    source "root_bash_profile.erb"
+    path "/root/.bash_profile"
+    action :create
+end
+
 # yumにepelリポジトリを追加（epelの依存）
 bash 'add_epel' do
   user 'root'
@@ -59,3 +67,16 @@ bash 'add_remi' do
   creates "/etc/yum.repos.d/remi.repo"
   not_if { File.exists?("/etc/yum.repos.d/remi.repo") }
 end
+
+
+# heroku toolbelt
+bash "Install_heroku_toolbelt" do
+    code "wget -qO- https://toolbelt.heroku.com/install.sh | sh"
+    not_if "which heroku"
+end
+link "/usr/local/bin/heroku" do
+    to "/usr/local/heroku/bin/heroku"
+end
+
+           
+           
