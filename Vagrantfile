@@ -16,6 +16,7 @@ Vagrant.configure(2) do |config|
 
   config.vm.define "mylamp" do |m|
     m.vm.network "forwarded_port", id: "ssh", guest: 22, host: 20992
+    m.vm.network "forwarded_port", guest: 80, host: 8880
     m.vm.hostname = "mylamp"
     m.vm.network "private_network", ip: "192.168.249.88"
   end
