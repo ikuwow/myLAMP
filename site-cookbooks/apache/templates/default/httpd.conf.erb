@@ -352,6 +352,11 @@ EnableSendfile on
 # Load config files in the "/etc/httpd/conf.d" directory, if any.
 IncludeOptional conf.d/*.conf
 
+# キャッシュ無効
+FileEtag None
+RequestHeader unset If-Modified-Since
+Header set Cache-Control no-store
+
 
 <VirtualHost *:80>
     DocumentRoot "/var/www/html/testproject/public"
@@ -381,6 +386,9 @@ IncludeOptional conf.d/*.conf
         Require all granted
         AllowOverride All
         Options Indexes FollowSymLinks
+        # virtualboxの共有フォルダのキャッシュ無効
+        EnableMMAP Off 
+        EnableSendfile Off
     </Directory>
 
 </VirtualHost>
