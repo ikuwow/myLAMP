@@ -62,3 +62,11 @@ bash "Create vagrant role" do
     EOC
 end
 
+bash "Create database floghub" do
+    code "createdb floghub"
+    user "vagrant"
+    action :run
+    not_if <<-EOC
+        test `psql -U postgres postgres -tc "select count(datname) from pg_database where datname='floghub';"` = 1
+    EOC
+end
