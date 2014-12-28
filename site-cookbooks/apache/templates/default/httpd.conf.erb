@@ -366,3 +366,21 @@ IncludeOptional conf.d/*.conf
     </Directory>
 
 </VirtualHost>
+
+
+#
+# FlogHub
+#
+<VirtualHost *:80>
+    DocumentRoot "/var/www/html/floghub/public"
+    ServerName floghub.mylamp.local
+    ErrorLog "logs/floghub-error_log"
+    CustomLog "logs/floghub-access_log" common
+    
+    <Directory "/var/www/html/floghub/public">
+        Require all granted
+        AllowOverride All
+        Options Indexes FollowSymLinks
+    </Directory>
+
+</VirtualHost>
