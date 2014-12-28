@@ -46,3 +46,19 @@ template "PostgreSQL config" do
     notifies :restart, "service[PostgreSQL_9.3]"
 end
 
+
+#
+# App development
+# 
+
+bash "Create vagrant role" do
+    code <<-EOC
+        psql -U postgres postgres -c "create role vagrant with login createdb password '9c4xzogJLxKs'"
+    EOC
+    user "postgres"
+    action :run
+    not_if <<-EOC
+        test `psql -U postgres postgres -tc "select count(rolname) from pg_roles where rolname = 'vagrant';"` = 1
+    EOC
+end
+
