@@ -344,8 +344,10 @@ AddDefaultCharset UTF-8
 # broken on your system.
 # Defaults if commented: EnableMMAP On, EnableSendfile Off
 #
-#EnableMMAP off
-EnableSendfile on
+
+# virtualboxの共有フォルダのキャッシュ無効
+EnableMMAP off
+EnableSendfile off
 
 # Supplemental configuration
 #
@@ -374,21 +376,18 @@ Header set Cache-Control no-store
 
 
 #
-# FlogHub
+# AccHub
 #
 <VirtualHost *:80>
-    DocumentRoot "/var/www/html/floghub/public"
+    DocumentRoot "/var/www/html/acchub/public"
     ServerName floghub.mylamp.local
     ErrorLog "logs/floghub-error_log"
     CustomLog "logs/floghub-access_log" common
     
-    <Directory "/var/www/html/floghub/public">
+    <Directory "/var/www/html/acchub/public">
         Require all granted
         AllowOverride All
         Options Indexes FollowSymLinks
-        # virtualboxの共有フォルダのキャッシュ無効
-        EnableMMAP Off 
-        EnableSendfile Off
     </Directory>
 
 </VirtualHost>
