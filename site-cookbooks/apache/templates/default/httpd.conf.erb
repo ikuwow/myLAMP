@@ -380,9 +380,9 @@ Header set Cache-Control no-store
 #
 <VirtualHost *:80>
     DocumentRoot "/var/www/html/acchub/public"
-    ServerName floghub.mylamp.local
-    ErrorLog "logs/floghub-error_log"
-    CustomLog "logs/floghub-access_log" common
+    ServerName acchub.mylamp.local
+    ErrorLog "logs/acchub-error_log"
+    CustomLog "logs/acchub-access_log" common
     
     <Directory "/var/www/html/acchub/public">
         Require all granted
